@@ -89,6 +89,26 @@ defmodule MentalHealthMatters.Account do
     Repo.delete(user)
   end
 
+  def login_user(attrs) do
+    result = with {:ok, email} <- Map.fetch(attrs, "email"),
+                  {:ok, password} <- Map.fetch(attrs, "password"),
+                  %User{} = user <- Repo.get_by(User, %{email: email}) do
+      validate_password(password, user)
+    end
+    case result do
+      {:ok, user} -> {:ok, user}
+      _ -> {:error, :unauthorized}
+    end
+  end
+
+  defp validate_password(password, user) do
+    if Comeonin.Bcrypt.checkpw(password, user.password_hash) do
+      {:ok, user}
+    else
+      {:error, :invalid_password}
+    end
+  end 
+
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.
 
@@ -133,4 +153,5 @@ defmodule MentalHealthMatters.Account do
         changeset
     end
   end
+
 end

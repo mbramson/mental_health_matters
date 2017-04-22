@@ -72,6 +72,44 @@ defmodule MentalHealthMatters.AccountTest do
     assert_raise Ecto.NoResultsError, fn -> Account.get_user!(user.id) end
   end
 
+  describe "login_user/1" do
+    test "returns the user if the credentials are correct" do
+      create_attrs = Map.merge(@create_attrs, %{password: "secretpassword"})
+      user = fixture(:user, create_attrs)
+      login_attrs = %{"email" => user.email, "password" => "secretpassword"}
+      assert {:ok, returned_user} = Account.login_user(login_attrs)
+      assert user.id == returned_user.id
+
+    end
+
+    test "returns an unauthorized error when the password is incorrect" do
+      create_attrs = Map.merge(@create_attrs, %{password: "secretpassword"})
+      user = fixture(:user, create_attrs)
+      login_attrs = %{"email" => user.email, "password" => "wrongpassword"}
+      assert {:error, :unauthorized} == Account.login_user(login_attrs)
+    end
+
+    test "returns an unauthorized error when no password is supplied" do
+      create_attrs = Map.merge(@create_attrs, %{password: "secretpassword"})
+      user = fixture(:user, create_attrs)
+      login_attrs = %{"email" => user.email}
+      assert {:error, :unauthorized} == Account.login_user(login_attrs)
+    end
+
+    test "returns an unauthorized error when no email is supplied" do
+      create_attrs = Map.merge(@create_attrs, %{password: "secretpassword"})
+      fixture(:user, create_attrs)
+      login_attrs = %{"password" => "wrongpassword"}
+      assert {:error, :unauthorized} == Account.login_user(login_attrs)
+    end
+
+    test "returns an unauthorized error when nothing is supplied" do
+      create_attrs = Map.merge(@create_attrs, %{password: "secretpassword"})
+      fixture(:user, create_attrs)
+      assert {:error, :unauthorized} == Account.login_user(%{})
+    end
+  end
+
   test "change_user/1 returns a user changeset" do
     user = fixture(:user)
     assert %Ecto.Changeset{} = Account.change_user(user)

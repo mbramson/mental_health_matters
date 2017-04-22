@@ -17,6 +17,7 @@ defmodule MentalHealthMatters.Web.Router do
     pipe_through :api
     resources "/users", UserController, except: [:new, :edit]
     resources "/meetings", MeetingController, except: [:new, :edit]
+    resources "/login", LoginController, only: [:create]
   end
 
   scope "/", MentalHealthMatters.Web do
