@@ -105,6 +105,6 @@ defmodule MentalHealthMatters.Account do
   defp user_changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, [:name, :email, :password_hash])
-    |> validate_required([:name, :email, :password_hash])
+    |> validate_required([:name, :email])
   end
 end
