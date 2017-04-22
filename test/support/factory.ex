@@ -38,4 +38,12 @@ defmodule MentalHealthMatters.Factory do
       coach: build(:user_coach)
     }
   end
+  
+  def availability_factory do
+    %MentalHealthMatters.Session.Availability{
+      start_time: NaiveDateTime.utc_now(),
+      end_time: NaiveDateTime.utc_now(),
+      coach: build(:user_coach)
+    }
+  end
 end

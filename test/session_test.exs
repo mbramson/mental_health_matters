@@ -3,6 +3,7 @@ defmodule MentalHealthMatters.SessionTest do
 
   alias MentalHealthMatters.Session
   alias MentalHealthMatters.Session.Meeting
+  alias MentalHealthMatters.Session.Availability
 
   @create_attrs %{meeting_time: ~N[2010-04-17 14:00:00.000000]}
   @update_attrs %{meeting_time: ~N[2011-05-18 15:01:01.000000]}
@@ -59,4 +60,31 @@ defmodule MentalHealthMatters.SessionTest do
     meeting = fixture(:meeting)
     assert %Ecto.Changeset{} = Session.change_meeting(meeting)
   end
+
+  test "list_availabilies/1 returns all availabilities" do
+    availability = insert(:availability)
+    assert Session.list_availabilities() == [availability]
+  end
+
+  test "get_availability! returns the meeting with given id" do
+    availability = insert(:availability)
+    assert Session.get_availability!(availability.id) == availability
+  end
+
+  test "create_availability/1 with valid data creates a availability" do
+    coach = insert(:user_coach)
+    start_time = ~N[2010-04-17 14:00:00.000000]
+    end_time = ~N[2010-04-17 16:00:00.000000]
+    attrs = %{coach_id: coach.id, start_time: start_time, end_time: end_time}
+    assert {:ok, %Availability{} = availability} = Session.create_availability(attrs)
+    assert availability.start_time == start_time
+    assert availability.end_time == end_time
+    assert availability.coach.id == coach.id
+  end
+
+  test "create_availability/1 with invalid data returns error changeset" do
+    invalid_attrs = %{coach_id: nil, start_time: nil, end_time: nil}
+    assert {:error, %Ecto.Changeset{}} = Session.create_availability(invalid_attrs)
+  end
+
 end
