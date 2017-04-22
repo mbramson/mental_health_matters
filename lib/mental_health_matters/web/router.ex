@@ -13,6 +13,11 @@ defmodule MentalHealthMatters.Web.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", MentalHealthMatters.Web do
+    pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
+  end
+
   scope "/", MentalHealthMatters.Web do
     pipe_through :browser # Use the default browser stack
 
