@@ -4,7 +4,7 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
   alias MentalHealthMatters.Account
   alias MentalHealthMatters.Account.User
 
-  @create_attrs %{email: "some email", name: "some name", password_hash: "some password_hash",
+  @create_attrs %{email: "some email", name: "some name", password: "password",
                   is_client: false, is_coach: false, is_manager: false}
   @update_attrs %{email: "some updated email", name: "some updated name", password_hash: "some updated password_hash",
                   is_client: false, is_coach: false, is_manager: false}

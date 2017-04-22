@@ -6,7 +6,7 @@ defmodule MentalHealthMatters.AccountTest do
 
   @create_attrs %{email: "some email",
                   name: "some name",
-                  password_hash: "some password_hash",
+                  password: "password",
                   is_client: false,
                   is_coach: false,
                   is_manager: false}
@@ -24,19 +24,21 @@ defmodule MentalHealthMatters.AccountTest do
   end
 
   test "list_users/1 returns all users" do
-    user = fixture(:user)
-    assert Account.list_users() == [user]
+    original_user = fixture(:user)
+    assert [user] = Account.list_users()
+    assert original_user.id == user.id
   end
 
   test "get_user! returns the user with given id" do
     user = fixture(:user)
-    assert Account.get_user!(user.id) == user
+    assert Account.get_user!(user.id).id == user.id
   end
 
   test "create_user/1 with valid data creates a user" do
     assert {:ok, %User{} = user} = Account.create_user(@create_attrs)
     assert user.email == "some email"
     assert user.name == "some name"
+    assert user.password_hash != nil
     assert user.is_client == false
     assert user.is_coach == false
     assert user.is_manager == false
@@ -61,7 +63,7 @@ defmodule MentalHealthMatters.AccountTest do
   test "update_user/2 with invalid data returns error changeset" do
     user = fixture(:user)
     assert {:error, %Ecto.Changeset{}} = Account.update_user(user, @invalid_attrs)
-    assert user == Account.get_user!(user.id)
+    assert user.id == Account.get_user!(user.id).id
   end
 
   test "delete_user/1 deletes the user" do

@@ -51,7 +51,7 @@ defmodule MentalHealthMatters.Account do
   """
   def create_user(attrs \\ %{}) do
     %User{}
-    |> user_changeset(attrs)
+    |> user_create_changeset(attrs)
     |> Repo.insert()
   end
 
@@ -114,9 +114,23 @@ defmodule MentalHealthMatters.Account do
   @changeset_create_attrs [:name, :email, :password, :is_client, :is_coach, :is_manager]
   @required_create_attrs [:name, :email, :password]
 
-  defp user_create_changeset(%User{}, user, attrs) do
+  defp user_create_changeset(%User{} = user, attrs) do
     user
     |> cast(attrs, @changeset_create_attrs)
     |> validate_required(@required_create_attrs)
+    |> hash_password_if_changed_and_valid
+  end
+
+  # Hashes the contents of the :password field and inserts the results into the
+  # :password_hash field. Only hashes and inserts if the password was changed
+  # and the changeset is valid.
+  @spec hash_password_if_changed_and_valid(%Ecto.Changeset{}) :: %Ecto.Changeset{}
+  defp hash_password_if_changed_and_valid(changeset) do
+    case changeset do
+      %Ecto.Changeset{valid?: true, changes: %{password: pass}} ->
+        put_change(changeset, :password_hash, Comeonin.Bcrypt.hashpwsalt(pass))
+      _ ->
+        changeset
+    end
   end
 end
