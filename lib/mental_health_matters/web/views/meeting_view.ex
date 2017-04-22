@@ -14,6 +14,7 @@ defmodule MentalHealthMatters.Web.MeetingView do
   def render("meeting.json", %{meeting: meeting}) do
     %{id: meeting.id,
       meeting_time: meeting.meeting_time,
+      has_occurred: meeting.has_occurred,
       client: render_one(meeting.client, UserView, "user.json"),
       coach: render_one(meeting.coach, UserView, "user.json") }
   end
