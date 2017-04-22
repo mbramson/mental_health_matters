@@ -1,8 +1,6 @@
 defmodule MentalHealthMatters.Web.AvailabilityControllerTest do
   use MentalHealthMatters.Web.ConnCase
 
-  alias MentalHealthMatters.Session.Availability
-
   @create_attrs %{start_time: ~N[2010-04-17 14:00:00.000000], end_time: ~N[2010-04-17 16:00:00.000000]}
   @invalid_attrs %{start_time: nil, end_time: nil}
 

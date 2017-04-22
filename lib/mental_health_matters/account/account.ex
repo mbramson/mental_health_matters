@@ -122,7 +122,7 @@ defmodule MentalHealthMatters.Account do
     user_changeset(user, %{})
   end
 
-  @changeset_attrs [:name, :email, :is_client, :is_coach, :is_manager]
+  @changeset_attrs [:name, :email, :student_id, :is_client, :is_coach, :is_manager]
   @required_attrs [:name, :email]
 
   defp user_changeset(%User{} = user, attrs) do
@@ -132,7 +132,7 @@ defmodule MentalHealthMatters.Account do
     |> unique_constraint(:email)
   end
 
-  @changeset_create_attrs [:name, :email, :password, :is_client, :is_coach, :is_manager]
+  @changeset_create_attrs [:name, :email, :student_id, :password, :is_client, :is_coach, :is_manager]
   @required_create_attrs [:name, :email, :password]
 
   defp user_create_changeset(%User{} = user, attrs) do

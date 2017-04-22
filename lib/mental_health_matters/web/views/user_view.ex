@@ -14,6 +14,7 @@ defmodule MentalHealthMatters.Web.UserView do
     %{id: user.id,
       name: user.name,
       email: user.email,
+      student_id: user.student_id,
       is_client: user.is_client,
       is_coach: user.is_coach,
       is_manager: user.is_manager}

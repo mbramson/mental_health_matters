@@ -5,8 +5,10 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
   alias MentalHealthMatters.Account.User
 
   @create_attrs %{email: "some email", name: "some name", password: "password",
+                  student_id: "ABC1234",
                   is_client: false, is_coach: false, is_manager: false}
   @update_attrs %{email: "some updated email", name: "some updated name", password_hash: "some updated password_hash",
+                  student_id: "4321CBA",
                   is_client: false, is_coach: false, is_manager: false}
   @invalid_attrs %{email: nil, name: nil, password_hash: nil}
 
@@ -33,6 +35,7 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
       "id" => id,
       "email" => "some email",
       "name" => "some name",
+      "student_id" => "ABC1234",
       "is_client" => false,
       "is_coach" => false,
       "is_manager" => false}
@@ -62,6 +65,7 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
       "id" => id,
       "email" => "some updated email",
       "name" => "some updated name",
+      "student_id" => "4321CBA",
       "is_client" => false,
       "is_coach" => false,
       "is_manager" => false}
