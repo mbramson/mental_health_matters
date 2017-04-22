@@ -129,6 +129,7 @@ defmodule MentalHealthMatters.Account do
     user
     |> cast(attrs, @changeset_attrs)
     |> validate_required(@required_attrs)
+    |> unique_constraint(:email)
   end
 
   @changeset_create_attrs [:name, :email, :password, :is_client, :is_coach, :is_manager]
@@ -138,6 +139,7 @@ defmodule MentalHealthMatters.Account do
     user
     |> cast(attrs, @changeset_create_attrs)
     |> validate_required(@required_create_attrs)
+    |> unique_constraint(:email)
     |> hash_password_if_changed_and_valid
   end
 

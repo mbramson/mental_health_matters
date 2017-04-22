@@ -38,6 +38,15 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
       "is_manager" => false}
   end
 
+  test "does not create user if email is already taken", %{conn: conn} do
+    user = insert(:user_client)
+    attrs = Map.merge(params_for(:user_client), %{email: user.email, password: "password"})
+    conn = post conn, user_path(conn, :create), user: attrs
+
+    assert json_response_error = json_response(conn, 422)["errors"]
+    assert %{"email" => ["has already been taken"]} = json_response_error
+  end
+
   test "does not create user and renders errors when data is invalid", %{conn: conn} do
     conn = post conn, user_path(conn, :create), user: @invalid_attrs
     assert json_response(conn, 422)["errors"] != %{}
