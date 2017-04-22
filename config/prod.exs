@@ -65,7 +65,6 @@ config :mental_health_matters, MentalHealthMatters.Web.Endpoint,
 # Configure your database
 config :mental_health_matters, MentalHealthMatters.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("PG_USER"),
-  password: System.get_env("PG_PASSWORD"),
+  url: System.get_env("DATABASE_URL")
   database: "mental_health_matters_prod",
   pool_size: 15
