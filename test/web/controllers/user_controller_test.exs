@@ -33,7 +33,6 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
       "id" => id,
       "email" => "some email",
       "name" => "some name",
-      "password_hash" => "some password_hash",
       "is_client" => false,
       "is_coach" => false,
       "is_manager" => false}
@@ -54,7 +53,6 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
       "id" => id,
       "email" => "some updated email",
       "name" => "some updated name",
-      "password_hash" => "some updated password_hash",
       "is_client" => false,
       "is_coach" => false,
       "is_manager" => false}

@@ -4,6 +4,7 @@ defmodule MentalHealthMatters.Account.User do
   schema "account_users" do
     field :email, :string
     field :name, :string
+    field :password, :string, virtual: true
     field :password_hash, :string
     field :is_client, :boolean, default: false
     field :is_coach, :boolean, default: false

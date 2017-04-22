@@ -37,7 +37,9 @@ defmodule MentalHealthMatters.AccountTest do
     assert {:ok, %User{} = user} = Account.create_user(@create_attrs)
     assert user.email == "some email"
     assert user.name == "some name"
-    assert user.password_hash == "some password_hash"
+    assert user.is_client == false
+    assert user.is_coach == false
+    assert user.is_manager == false
   end
 
   test "create_user/1 with invalid data returns error changeset" do
@@ -45,12 +47,15 @@ defmodule MentalHealthMatters.AccountTest do
   end
 
   test "update_user/2 with valid data updates the user" do
-    user = fixture(:user)
-    assert {:ok, user} = Account.update_user(user, @update_attrs)
+    original_user = fixture(:user)
+    assert {:ok, user} = Account.update_user(original_user, @update_attrs)
     assert %User{} = user
     assert user.email == "some updated email"
     assert user.name == "some updated name"
-    assert user.password_hash == "some updated password_hash"
+    assert user.password_hash == original_user.password_hash
+    assert user.is_client == true
+    assert user.is_coach == true
+    assert user.is_manager == true
   end
 
   test "update_user/2 with invalid data returns error changeset" do
