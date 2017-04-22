@@ -102,9 +102,12 @@ defmodule MentalHealthMatters.Account do
     user_changeset(user, %{})
   end
 
+  @changeset_attrs [:name, :email, :password_hash, :is_client, :is_coach, :is_manager]
+  @required_attrs [:name, :email]
+
   defp user_changeset(%User{} = user, attrs) do
     user
-    |> cast(attrs, [:name, :email, :password_hash])
-    |> validate_required([:name, :email])
+    |> cast(attrs, @changeset_attrs)
+    |> validate_required(@required_attrs)
   end
 end
