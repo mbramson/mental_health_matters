@@ -4,8 +4,10 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
   alias MentalHealthMatters.Account
   alias MentalHealthMatters.Account.User
 
-  @create_attrs %{email: "some email", name: "some name", password_hash: "some password_hash"}
-  @update_attrs %{email: "some updated email", name: "some updated name", password_hash: "some updated password_hash"}
+  @create_attrs %{email: "some email", name: "some name", password_hash: "some password_hash",
+                  is_client: false, is_coach: false, is_manager: false}
+  @update_attrs %{email: "some updated email", name: "some updated name", password_hash: "some updated password_hash",
+                  is_client: false, is_coach: false, is_manager: false}
   @invalid_attrs %{email: nil, name: nil, password_hash: nil}
 
   def fixture(:user) do
@@ -31,7 +33,10 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
       "id" => id,
       "email" => "some email",
       "name" => "some name",
-      "password_hash" => "some password_hash"}
+      "password_hash" => "some password_hash",
+      "is_client" => false,
+      "is_coach" => false,
+      "is_manager" => false}
   end
 
   test "does not create user and renders errors when data is invalid", %{conn: conn} do
@@ -49,7 +54,10 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
       "id" => id,
       "email" => "some updated email",
       "name" => "some updated name",
-      "password_hash" => "some updated password_hash"}
+      "password_hash" => "some updated password_hash",
+      "is_client" => false,
+      "is_coach" => false,
+      "is_manager" => false}
   end
 
   test "does not update chosen user and renders errors when data is invalid", %{conn: conn} do

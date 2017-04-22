@@ -1,7 +1,6 @@
 defmodule MentalHealthMatters.Web.MeetingControllerTest do
   use MentalHealthMatters.Web.ConnCase
 
-  alias MentalHealthMatters.Session
   alias MentalHealthMatters.Session.Meeting
 
   @create_attrs %{meeting_time: ~N[2010-04-17 14:00:00.000000]}
@@ -9,8 +8,7 @@ defmodule MentalHealthMatters.Web.MeetingControllerTest do
   @invalid_attrs %{meeting_time: nil}
 
   def fixture(:meeting) do
-    {:ok, meeting} = Session.create_meeting(@create_attrs)
-    meeting
+    insert(:meeting)
   end
 
   setup %{conn: conn} do
@@ -23,13 +21,20 @@ defmodule MentalHealthMatters.Web.MeetingControllerTest do
   end
 
   test "creates meeting and renders meeting when data is valid", %{conn: conn} do
-    conn = post conn, meeting_path(conn, :create), meeting: @create_attrs
+    client = insert(:user_client)
+    coach = insert(:user_coach)
+    attrs = Map.merge(@create_attrs, %{client_id: client.id, coach_id: coach.id})
+    conn = post conn, meeting_path(conn, :create), meeting: attrs
     assert %{"id" => id} = json_response(conn, 201)["data"]
 
     conn = get conn, meeting_path(conn, :show, id)
-    assert json_response(conn, 200)["data"] == %{
-      "id" => id,
-      "meeting_time" => ~N[2010-04-17 14:00:00.000000]}
+    client_id = client.id
+    coach_id = coach.id
+    json_response_data = json_response(conn, 200)["data"]
+    assert id == json_response_data["id"]
+    assert "2010-04-17T14:00:00.000000" == json_response_data["meeting_time"]
+    assert client_id == json_response_data["client"]["id"]
+    assert coach_id == json_response_data["coach"]["id"]
   end
 
   test "does not create meeting and renders errors when data is invalid", %{conn: conn} do
@@ -43,9 +48,12 @@ defmodule MentalHealthMatters.Web.MeetingControllerTest do
     assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
     conn = get conn, meeting_path(conn, :show, id)
-    assert json_response(conn, 200)["data"] == %{
-      "id" => id,
-      "meeting_time" => ~N[2011-05-18 15:01:01.000000]}
+    client_id = meeting.client.id
+    coach_id = meeting.coach.id
+    assert %{ "id" => ^id,
+              "meeting_time" => "2011-05-18T15:01:01.000000",
+              "client" => %{"id" => ^client_id},
+              "coach" => %{"id" => ^coach_id}} = json_response(conn, 200)["data"]
   end
 
   test "does not update chosen meeting and renders errors when data is invalid", %{conn: conn} do

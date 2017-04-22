@@ -22,6 +22,7 @@ defmodule MentalHealthMatters.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import MentalHealthMatters.DataCase
+      import MentalHealthMatters.Factory
     end
   end
 

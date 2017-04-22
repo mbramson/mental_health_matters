@@ -8,9 +8,8 @@ defmodule MentalHealthMatters.SessionTest do
   @update_attrs %{meeting_time: ~N[2011-05-18 15:01:01.000000]}
   @invalid_attrs %{meeting_time: nil}
 
-  def fixture(:meeting, attrs \\ @create_attrs) do
-    {:ok, meeting} = Session.create_meeting(attrs)
-    meeting
+  def fixture(:meeting, _attrs \\ @create_attrs) do
+    insert(:meeting)
   end
 
   test "list_meetings/1 returns all meetings" do
@@ -24,8 +23,13 @@ defmodule MentalHealthMatters.SessionTest do
   end
 
   test "create_meeting/1 with valid data creates a meeting" do
-    assert {:ok, %Meeting{} = meeting} = Session.create_meeting(@create_attrs)
+    client = insert(:user_client)
+    coach = insert(:user_coach)
+    attrs = Map.merge(@create_attrs, %{client_id: client.id, coach_id: coach.id})
+    assert {:ok, %Meeting{} = meeting} = Session.create_meeting(attrs)
     assert meeting.meeting_time == ~N[2010-04-17 14:00:00.000000]
+    assert meeting.client.id == client.id
+    assert meeting.coach.id == coach.id
   end
 
   test "create_meeting/1 with invalid data returns error changeset" do
