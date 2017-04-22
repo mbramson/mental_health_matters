@@ -43,7 +43,7 @@ defmodule MentalHealthMatters.Web.UserControllerTest do
     attrs = Map.merge(params_for(:user_client), %{email: user.email, password: "password"})
     conn = post conn, user_path(conn, :create), user: attrs
 
-    assert json_response_error = json_response(conn, 422)["errors"]
+    json_response_error = json_response(conn, 422)["errors"]
     assert %{"email" => ["has already been taken"]} = json_response_error
   end
 

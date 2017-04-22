@@ -2,7 +2,6 @@ defmodule MentalHealthMatters.Web.LoginControllerTest do
   use MentalHealthMatters.Web.ConnCase
 
   alias MentalHealthMatters.Account
-  alias MentalHealthMatters.Account.User
 
   @create_attrs %{email: "some email", name: "some name", password: "password",
                   is_client: false, is_coach: false, is_manager: false}
