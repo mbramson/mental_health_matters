@@ -1,0 +1,4 @@
+<h2>Schedule Availability to Coach</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: schedule_availability_path(@conn, :create) %>

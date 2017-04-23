@@ -94,7 +94,7 @@ defmodule MentalHealthMatters.Session do
   @changeset_attrs [:start_time, :end_time, :coach_id]
   @required_attrs [:start_time, :end_time, :coach_id]
 
-  defp availability_changeset(%Availability{} = availability, attrs) do
+  def availability_changeset(%Availability{} = availability, attrs) do
     availability
     |> cast(attrs, @changeset_attrs)
     |> validate_required(@required_attrs)
