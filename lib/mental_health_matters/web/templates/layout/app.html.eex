@@ -23,7 +23,7 @@
             <%= end %>
           </ul>
         </nav>
-        <span class="logo"></span>
+        <%= link "", to: "/upcoming_appointments", class: "logo" %>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
