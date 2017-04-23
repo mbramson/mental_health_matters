@@ -4,7 +4,7 @@
   <div class="jumbotron">
     <p>
       It looks like there are no coaches available. We're super sorry about that! You're not alone!<br><br>
-      Take our <%= link "Assessment", class: "btn btn-success", role: "button", to: "/assessment/new" %> to find additional resources that can help!
+      Check out these <%= link "Additional Resources", class: "btn btn-primary", role: "button", to: "http://codegreencampaign.org/resources/" %> to get help now!
     </p>
   </div>
 <%= else %>
