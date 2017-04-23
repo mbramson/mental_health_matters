@@ -69,6 +69,13 @@ defmodule MentalHealthMatters.Session do
     Repo.all(Availability) |> Repo.preload(:coach)
   end
 
+  def list_upcoming_availabilities do
+    now = NaiveDateTime.utc_now()
+    query = from availability in Availability,
+      where: availability.end_time > ^now
+    Repo.all(query) |> Repo.preload(:coach)
+  end
+
   def get_availability!(id) do
     Repo.get!(Availability, id) |> Repo.preload(:coach)
   end

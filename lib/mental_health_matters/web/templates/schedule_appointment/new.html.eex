@@ -1,0 +1,26 @@
+<h2>Schedule an appointments</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Start</th>
+      <th>End</th>
+      <th>Coach</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for availability <- @availabilities do %>
+    <tr>
+      <td><%= availability.start_time %></td>
+      <td><%= availability.end_time %></td>
+      <td><%= availability.coach.name %></td>
+      <td />
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<%= render "form.html", changeset: @changeset, coaches: @coaches,
+                        action: schedule_appointment_path(@conn, :create) %>

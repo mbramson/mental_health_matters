@@ -39,6 +39,7 @@ defmodule MentalHealthMatters.Web do
       import MentalHealthMatters.Web.Router.Helpers
       import MentalHealthMatters.Web.ErrorHelpers
       import MentalHealthMatters.Web.Gettext
+      import MentalHealthMatters.ViewHelpers
     end
   end
 

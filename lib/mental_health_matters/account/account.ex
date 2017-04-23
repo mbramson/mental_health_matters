@@ -21,6 +21,12 @@ defmodule MentalHealthMatters.Account do
     Repo.all(User)
   end
 
+  def list_coaches do
+    query = from user in User,
+      where: user.is_coach == true
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single user.
 
