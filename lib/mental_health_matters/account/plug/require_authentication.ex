@@ -40,8 +40,7 @@ defmodule MentalHealthMatters.Plug.RequireAuthentication do
          :error,
          'You need to be signed in to view this page'
        )
-   #|> Phoenix.Controller.redirect(to: Routes.signin_path(conn, :new))
-    |> Phoenix.Controller.redirect(to: "/")
+    |> Phoenix.Controller.redirect(to: Routes.signin_path(conn, :new))
     |> halt
   end
 end
