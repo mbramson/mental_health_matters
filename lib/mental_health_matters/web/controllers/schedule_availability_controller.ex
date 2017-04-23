@@ -17,9 +17,10 @@ defmodule MentalHealthMatters.Web.ScheduleAvailabilityController do
     end
   end
 
-  def create(conn, %{"schedule_appointment" => params}) do
+  def create(conn, %{"availability" => params}) do
+    params = Map.merge(params, %{"coach_id" => conn.assigns.current_user.id})
     case Session.create_availability(params) do
-      {:ok, availability} ->
+      {:ok, _availability} ->
         conn
         |> put_flash(:info, "Availability scheduled successfully.")
         |> redirect(to: "/upcoming_appointments")
