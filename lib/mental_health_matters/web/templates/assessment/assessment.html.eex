@@ -1,12 +1,85 @@
 <h2>Assessment</h2>
 
-<h3>How are you feeling?</h3>
+<fieldset>
+  <legend>How are you feeling?</legend>
+  <div>
+    <input type="checkbox" id="q1a1" name="q1" value="q1a1">
+    <label for="coding">I'm dealing with a breakup</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q1a2" name="q1" value="q1a2">
+    <label for="music">I'm depressed</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q1a3" name="q1" value="q1a3">
+    <label for="music">I'm having trouble adjusting</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q1a4" name="q1" value="q1a4">
+    <label for="music">I've been really anxious</label>
+  </div>
+</fieldset>
 
-<h3>Over the past two weeks?, how often have you: <strong>Been feeling low in energy, slowed down?</strong></h3>
+<h3>Over the past two weeks, how often have you:</h3>
+<fieldset>
+  <legend>Been feeling low in energy, slowed down?</legend>
+  <div>
+    <input type="checkbox" id="q2a1" name="q2" value="q2a1">
+    <label for="coding">None or little of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q2a2" name="q2" value="q2a2">
+    <label for="music">Some of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q2a3" name="q2" value="q2a3">
+    <label for="music">Most of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q2a4" name="q2" value="q2a4">
+    <label for="music">All of the time</label>
+  </div>
+</fieldset>
 
-<h3>Over the past two weeks?, how often have you: <strong>Been feeling hopeless about the future?</strong></h3>
+<fieldset>
+  <legend>Been feeling hopeless about the future?</legend>
+  <div>
+    <input type="checkbox" id="q3a1" name="q3" value="q3a1">
+    <label for="coding">None or little of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q3a2" name="q3" value="q3a2">
+    <label for="music">Some of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q3a3" name="q3" value="q3a3">
+    <label for="music">Most of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q3a4" name="q3" value="q3a4">
+    <label for="music">All of the time</label>
+  </div>
+</fieldset>
 
-<h3>Over the past two weeks?, how often have you: <strong>Thought about or wanted to harm yourself?</strong></h3>
+<fieldset>
+  <legend>Thought about or wanted to harm yourself?</legend>
+  <div>
+    <input type="checkbox" id="q4a1" name="q4" value="q4a1">
+    <label for="coding">None or little of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q4a2" name="q4" value="q4a2">
+    <label for="music">Some of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q4a3" name="q4" value="q4a3">
+    <label for="music">Most of the time</label>
+  </div>
+  <div>
+    <input type="checkbox" id="q4a4" name="q4" value="q4a4">
+    <label for="music">All of the time</label>
+  </div>
+</fieldset>
 
 <br>
 <div class="jumbotron">
