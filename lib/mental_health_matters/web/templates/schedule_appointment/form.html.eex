@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= label f, :coach_id, class: "control-label" %>
-    <%= select f, :coach_id, data_as_select(@coaches), prompt: "(no coaches available)", class: "form-control" %>
+    <%= select f, :coach_id, data_as_select(@coaches), prompt: "(no coach selected)", class: "form-control" %>
     <%= error_tag f, :coach_id %>
   </div>
 
