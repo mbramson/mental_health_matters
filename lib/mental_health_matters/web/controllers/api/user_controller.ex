@@ -1,4 +1,4 @@
-defmodule MentalHealthMatters.Web.ApiUserController do
+defmodule MentalHealthMatters.Web.UserController do
   use MentalHealthMatters.Web, :controller
 
   alias MentalHealthMatters.Account
