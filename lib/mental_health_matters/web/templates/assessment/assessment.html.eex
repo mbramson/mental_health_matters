@@ -1,0 +1,14 @@
+<h2>Assessment</h2>
+
+<h3>How are you feeling?</h3>
+
+<h3>Over the past two weeks?, how often have you: <strong>Been feeling low in energy, slowed down?</strong></h3>
+
+<h3>Over the past two weeks?, how often have you: <strong>Been feeling hopeless about the future?</strong></h3>
+
+<h3>Over the past two weeks?, how often have you: <strong>Thought about or wanted to harm yourself?</strong></h3>
+
+<br>
+<div class="jumbotron">
+  <%= link "Submit and get help", class: "btn-lg btn-success", role: "button", to: "/assessment/results" %>
+</div>
