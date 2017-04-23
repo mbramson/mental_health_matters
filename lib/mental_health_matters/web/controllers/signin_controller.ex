@@ -22,6 +22,7 @@ defmodule MentalHealthMatters.Web.SigninController do
         conn
         |> Plug.Conn.put_session(:current_user, user)
         |> put_flash(:info, "Successfully logged in!")
+        |> redirect(to: "/")
       _ ->
         conn
         |> put_flash(:info, "Invalid Credentials")

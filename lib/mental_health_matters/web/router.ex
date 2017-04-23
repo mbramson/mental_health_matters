@@ -9,6 +9,10 @@ defmodule MentalHealthMatters.Web.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :assign_current_user do
+    plug MentalHealthMatters.Plug.AssignCurrentUser
+  end
+
   pipeline :authenticate do
     plug MentalHealthMatters.Plug.RequireAuthentication
   end
@@ -25,15 +29,13 @@ defmodule MentalHealthMatters.Web.Router do
     resources "/login", LoginController, only: [:create]
   end
 
-
-
   scope "/", MentalHealthMatters.Web do
     pipe_through [:browser, :authenticate]
 
   end
 
   scope "/", MentalHealthMatters.Web do
-    pipe_through :browser
+    pipe_through [:browser, :assign_current_user]
 
     resources "/signin", SigninController, only: [:new, :create]
     resources "/registration", RegistrationController, only: [:new, :create]
