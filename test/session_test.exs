@@ -18,10 +18,11 @@ defmodule MentalHealthMatters.SessionTest do
     assert Session.list_meetings() == [meeting]
   end
 
-  test "list_upcoming_meetings/1 returns only future meetings" do
-    _past_meeting = insert(:meeting, %{meeting_time: ~N[2000-01-01 12:00:00.000000]})
-    future_meeting = insert(:meeting, %{meeting_time: ~N[2100-01-01 12:00:00.000000]})
-     assert Session.list_upcoming_meetings() == [future_meeting]
+  test "list_users_upcoming_meetings/1 returns only future meetings" do
+    current_user = insert(:user_client)
+    _past_meeting = insert(:meeting, %{client: current_user, meeting_time: ~N[2000-01-01 12:00:00.000000]})
+    future_meeting = insert(:meeting, %{client: current_user, meeting_time: ~N[2100-01-01 12:00:00.000000]})
+     assert Session.list_users_upcoming_meetings(current_user) == [future_meeting]
   end
 
   test "get_meeting! returns the meeting with given id" do

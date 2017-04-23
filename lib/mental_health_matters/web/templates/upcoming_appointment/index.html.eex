@@ -1,0 +1,21 @@
+<h2>Your upcoming appointments</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Time</th>
+      <th>Coach</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for meeting <- @meetings do %>
+    <tr>
+      <td><%= meeting.meeting_time %></td>
+      <td><%= meeting.coach.name %></td>
+      <td />
+    </tr>
+<% end %>
+  </tbody>
+</table>

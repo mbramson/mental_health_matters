@@ -32,6 +32,7 @@ defmodule MentalHealthMatters.Web.Router do
   scope "/", MentalHealthMatters.Web do
     pipe_through [:browser, :authenticate]
 
+    resources "/upcoming_appointments", UpcomingAppointmentController, only: [:index]
   end
 
   scope "/", MentalHealthMatters.Web do

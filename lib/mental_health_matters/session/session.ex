@@ -13,10 +13,12 @@ defmodule MentalHealthMatters.Session do
     Repo.all(Meeting) |> Repo.preload([:client, :coach])
   end
 
-  def list_upcoming_meetings do
+  def list_users_upcoming_meetings(user) do
+    user_id = user.id
     now = NaiveDateTime.utc_now()
     query = from meeting in Meeting,
-      where: meeting.meeting_time > ^now
+      where: meeting.meeting_time > ^now,
+      where: meeting.client_id == ^user_id
     Repo.all(query) |> Repo.preload([:client, :coach])
   end
 
