@@ -14,7 +14,8 @@ defmodule MentalHealthMatters.Web.ScheduleAppointmentController do
     render(conn, "new.html", availabilities: availabilities, changeset: changeset, coaches: coaches)
   end
 
-  def create(conn, %{"schedule_appointment" => params}) do
+  def create(conn, %{"meeting" => params}) do
+    params = Map.merge(params, %{"client_id" => conn.assigns.current_user.id})
     case Session.create_meeting(params) do
       {:ok, meeting} ->
         conn

@@ -27,6 +27,8 @@ defmodule MentalHealthMatters.Session do
   end
 
   def create_meeting(attrs \\ %{}) do
+    IO.puts "meeting_changeset"
+    IO.inspect meeting_changeset(%Meeting{}, attrs)
     %Meeting{}
     |> meeting_changeset(attrs)
     |> Repo.insert()
