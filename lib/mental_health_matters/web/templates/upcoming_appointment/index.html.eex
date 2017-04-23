@@ -21,3 +21,7 @@
 </table>
 
 <%= link "Schedule new appointment", class: "btn btn-success", role: "button", to: "/schedule_appointment/new" %>
+<%= if @conn.assigns.current_user.is_coach do %>
+  <br><br>
+  <%= link "Schedule Availability to Help Others", class: "btn btn-primary", role: "button", to: "/schedule_availability/new" %>
+<%= end %>
