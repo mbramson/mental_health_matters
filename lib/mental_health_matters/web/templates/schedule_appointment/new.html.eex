@@ -1,26 +1,35 @@
 <h2>Schedule an appointment</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Start</th>
-      <th>End</th>
-      <th>Coach</th>
+<%= if Enum.empty?(@availabilities) do %>
+  <div class="jumbotron">
+    <p>
+      It looks like there are no coaches availabile. We're super sorry about that! You're not alone!<br><br>
+      Take our <%= link "Assessment", class: "btn btn-success", role: "button", to: "/assessment/new" %> to find additional resources that can help!
+    </p>
+  </div>
+<%= else %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Start</th>
+        <th>End</th>
+        <th>Coach</th>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for availability <- @availabilities do %>
-    <tr>
-      <td><%= availability.start_time %></td>
-      <td><%= availability.end_time %></td>
-      <td><%= availability.coach.name %></td>
-      <td />
-    </tr>
-<% end %>
-  </tbody>
-</table>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+  <%= for availability <- @availabilities do %>
+      <tr>
+        <td><%= availability.start_time %></td>
+        <td><%= availability.end_time %></td>
+        <td><%= availability.coach.name %></td>
+        <td />
+      </tr>
+  <% end %>
+    </tbody>
+  </table>
 
-<%= render "form.html", changeset: @changeset, coaches: @coaches,
-                        action: schedule_appointment_path(@conn, :create) %>
+  <%= render "form.html", changeset: @changeset, coaches: @coaches,
+                          action: schedule_appointment_path(@conn, :create) %>
+<%= end %>
