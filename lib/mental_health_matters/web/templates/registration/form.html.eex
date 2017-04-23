@@ -24,6 +24,18 @@
   </div>
 
   <div class="form-group">
+    <%= label f, "Seeking Help", class: "control-label" %>
+    <%= checkbox f, :is_client, class: "form_control" %>
+    <%= error_tag f, :is_client %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, "Offering Help", class: "control-label" %>
+    <%= checkbox f, :is_coach, class: "form_control" %>
+    <%= error_tag f, :is_coach %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
