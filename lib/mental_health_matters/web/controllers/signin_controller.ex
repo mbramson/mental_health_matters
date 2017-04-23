@@ -22,11 +22,11 @@ defmodule MentalHealthMatters.Web.SigninController do
         conn
         |> Plug.Conn.put_session(:current_user, user)
         |> put_flash(:info, "Successfully logged in!")
-        |> redirect(to: "/")
-      _ ->
+        |> redirect(to: "/upcoming_appointments")
+      {:error, changeset} ->
         conn
-        |> put_flash(:info, "Invalid Credentials")
-        |> render(conn, "new.html", changeset: Account.change_user(%User{}))
+        |> put_flash(:error, "Invalid Credentials")
+        |> redirect(to: "/signin/new")
     end
   end
 

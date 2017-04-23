@@ -97,7 +97,7 @@ defmodule MentalHealthMatters.Account do
     end
     case result do
       {:ok, user} -> {:ok, user}
-      _ -> {:error, :unauthorized}
+      _ -> {:error, user_changeset(%User{}, %{})}
     end
   end
 
