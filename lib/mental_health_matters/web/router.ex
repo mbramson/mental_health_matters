@@ -10,7 +10,7 @@ defmodule MentalHealthMatters.Web.Router do
   end
 
   pipeline :authenticate do
-    plug Pairmotron.Plug.RequireAuthentication
+    plug MentalHealthMatters.Plug.RequireAuthentication
   end
 
   pipeline :api do

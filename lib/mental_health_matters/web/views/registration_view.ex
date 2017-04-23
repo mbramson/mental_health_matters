@@ -1,3 +1,3 @@
-defmodule MentalHealthMatters.Web.UserView do
+defmodule MentalHealthMatters.Web.RegistrationView do
   use MentalHealthMatters.Web, :view
 end

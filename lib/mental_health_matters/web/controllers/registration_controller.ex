@@ -1,11 +1,11 @@
-defmodule MentalHealthMatters.RegistrationController do
+defmodule MentalHealthMatters.Web.RegistrationController do
   @moduledoc """
   Handles Users registering for accounts and also logging in when they succeed
   at doing so.
   """
   use MentalHealthMatters.Web, :controller
 
-  alias MentalhealthMatters.Account
+  alias MentalHealthMatters.Account
   alias MentalHealthMatters.Account.User
 
   plug :scrub_params, "user" when action in [:create]
@@ -23,8 +23,9 @@ defmodule MentalHealthMatters.RegistrationController do
         conn
         |> put_flash(:info, "User created successfully.")
         |> Plug.Conn.put_session(:current_user, user)
-        |> redirect(to: user_path(conn, :show, user))
-      {:error, %Ecto.Chageset{} = changeset} ->
+        |> redirect(to: "/")
+        #|> redirect(to: user_path(conn, :show, user))
+      {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end
