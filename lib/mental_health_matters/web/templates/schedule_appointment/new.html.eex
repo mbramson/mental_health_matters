@@ -21,8 +21,8 @@
     <tbody>
   <%= for availability <- @availabilities do %>
       <tr>
-        <td><%= availability.start_time %></td>
-        <td><%= availability.end_time %></td>
+        <td><%= format_date(availability.start_time) %></td>
+        <td><%= format_date(availability.end_time) %></td>
         <td><%= availability.coach.name %></td>
         <td />
       </tr>

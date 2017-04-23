@@ -7,4 +7,9 @@ defmodule MentalHealthMatters.ViewHelpers do
     |> List.flatten
   end
 
+  def format_date(date) do
+    {:ok, date_string} = Timex.format(date, "{YYYY}-{M}-{D} {h12}:{m}")
+    date_string
+  end
+
 end

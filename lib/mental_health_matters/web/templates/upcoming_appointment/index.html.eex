@@ -15,7 +15,7 @@
   <tbody>
 <%= for meeting <- @meetings do %>
     <tr>
-      <td><%= meeting.meeting_time %></td>
+      <td><%= format_date(meeting.meeting_time) %></td>
       <%= if @conn.assigns.current_user.is_coach do %>
         <td><%= meeting.client.name %></td>
       <%= end %>
