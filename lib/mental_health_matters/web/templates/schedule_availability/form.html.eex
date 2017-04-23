@@ -7,13 +7,13 @@
 
   <div class="form-group">
     <%= label f, :start_time, class: "control-label" %>
-    <%= text_input f, :start_time, class: "form-control" %>
+    <%= datetime_select f, :start_time, class: "form-control", default: Timex.now %>
     <%= error_tag f, :start_time %>
   </div>
 
   <div class="form-group">
     <%= label f, :end_time, class: "control-label" %>
-    <%= text_input f, :end_time, class: "form-control" %>
+    <%= datetime_select f, :end_time, class: "form-control", default: Timex.now %>
     <%= error_tag f, :end_time %>
   </div>
 

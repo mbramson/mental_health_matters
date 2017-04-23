@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <%= label f, :meeting_time, class: "control-label" %>
-    <%= text_input f, :meeting_time, class: "form-control" %>
+    <%= datetime_select f, :meeting_time, class: "form-control", default: Timex.now %>
     <%= error_tag f, :meeting_time %>
   </div>
 
