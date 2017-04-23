@@ -2,6 +2,12 @@
   <h2><%= gettext "Welcome to %{name}", name: "Blueline" %></h2>
   <p class="lead">Feeling down? Blueline is here for you.<br>Get help now!</p>
 
+  <p class="lead">Not sure where to go for help?</p>
+  <%= link "Take the Assessment", class: "btn btn-primary", role: "button", to: "/assessment" %>
+  <br>
+  <br>
+
+  <p class="lead">Need help now?</p>
   <%= if @conn.assigns[:current_user] do %>
     <%= link "Schedule an Appointment!", class: "btn btn-success", role: "button", to: "/schedule_appointment/new" %>
   <%= else %>
