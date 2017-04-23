@@ -4,6 +4,9 @@
   <thead>
     <tr>
       <th>Time</th>
+      <%= if @conn.assigns.current_user.is_coach do %>
+        <th>Client</th>
+      <%= end %>
       <th>Coach</th>
 
       <th></th>
@@ -13,6 +16,9 @@
 <%= for meeting <- @meetings do %>
     <tr>
       <td><%= meeting.meeting_time %></td>
+      <%= if @conn.assigns.current_user.is_coach do %>
+        <td><%= meeting.client.name %></td>
+      <%= end %>
       <td><%= meeting.coach.name %></td>
       <td />
     </tr>

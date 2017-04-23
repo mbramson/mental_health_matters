@@ -18,7 +18,7 @@ defmodule MentalHealthMatters.Session do
     now = NaiveDateTime.utc_now()
     query = from meeting in Meeting,
       where: meeting.meeting_time > ^now,
-      where: meeting.client_id == ^user_id
+      where: meeting.client_id == ^user_id or meeting.coach_id == ^user_id
     Repo.all(query) |> Repo.preload([:client, :coach])
   end
 
