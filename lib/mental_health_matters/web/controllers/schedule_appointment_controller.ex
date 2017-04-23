@@ -10,7 +10,6 @@ defmodule MentalHealthMatters.Web.ScheduleAppointmentController do
     availabilities = Session.list_upcoming_availabilities()
     changeset = Session.change_meeting(%Meeting{})
     coaches = Account.list_coaches
-    IO.inspect availabilities
     render(conn, "new.html", availabilities: availabilities, changeset: changeset, coaches: coaches)
   end
 
