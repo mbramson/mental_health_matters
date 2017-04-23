@@ -18,6 +18,12 @@ defmodule MentalHealthMatters.SessionTest do
     assert Session.list_meetings() == [meeting]
   end
 
+  test "list_upcoming_meetings/1 returns only future meetings" do
+    _past_meeting = insert(:meeting, %{meeting_time: ~N[2000-01-01 12:00:00.000000]})
+    future_meeting = insert(:meeting, %{meeting_time: ~N[2100-01-01 12:00:00.000000]})
+     assert Session.list_upcoming_meetings() == [future_meeting]
+  end
+
   test "get_meeting! returns the meeting with given id" do
     meeting = fixture(:meeting)
     assert Session.get_meeting!(meeting.id) == meeting
