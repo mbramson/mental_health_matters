@@ -22,7 +22,7 @@ defmodule MentalHealthMatters.RegistrationController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> Plug.put_session(:current_user, user)
+        |> Plug.Conn.put_session(:current_user, user)
         |> redirect(to: user_path(conn, :show, user))
       {:error, %Ecto.Chageset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)

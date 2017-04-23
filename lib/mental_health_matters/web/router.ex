@@ -9,6 +9,10 @@ defmodule MentalHealthMatters.Web.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :authenticate do
+    plug Pairmotron.Plug.RequireAuthentication
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -21,9 +25,17 @@ defmodule MentalHealthMatters.Web.Router do
     resources "/login", LoginController, only: [:create]
   end
 
-  scope "/", MentalHealthMatters.Web do
-    pipe_through :browser # Use the default browser stack
 
+
+  scope "/", MentalHealthMatters.Web do
+    pipe_through [:browser, :authenticate]
+
+  end
+
+  scope "/", MentalHealthMatters.Web do
+    pipe_through :browser
+
+    resources "/register", RegistrationController, only: [:new, :create]
     get "/", PageController, :index
   end
 
