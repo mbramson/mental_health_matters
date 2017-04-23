@@ -37,7 +37,7 @@ defmodule MentalHealthMatters.Web.Router do
   scope "/", MentalHealthMatters.Web do
     pipe_through [:browser, :assign_current_user]
 
-    resources "/signin", SigninController, only: [:new, :create]
+    resources "/signin", SigninController, only: [:new, :create, :delete]
     resources "/registration", RegistrationController, only: [:new, :create]
     get "/", PageController, :index
   end

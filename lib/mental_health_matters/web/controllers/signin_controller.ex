@@ -29,4 +29,11 @@ defmodule MentalHealthMatters.Web.SigninController do
         |> render(conn, "new.html", changeset: Account.change_user(%User{}))
     end
   end
+
+  def delete(conn, _) do
+    conn
+    |> Plug.Conn.delete_session(:current_user)
+    |> put_flash(:info, "Logged out!")
+    |> redirect(to: signin_path(conn, :new))
+  end
 end
