@@ -3,7 +3,7 @@
 <%= if Enum.empty?(@availabilities) do %>
   <div class="jumbotron">
     <p>
-      It looks like there are no coaches availabile. We're super sorry about that! You're not alone!<br><br>
+      It looks like there are no coaches available. We're super sorry about that! You're not alone!<br><br>
       Take our <%= link "Assessment", class: "btn btn-success", role: "button", to: "/assessment/new" %> to find additional resources that can help!
     </p>
   </div>
