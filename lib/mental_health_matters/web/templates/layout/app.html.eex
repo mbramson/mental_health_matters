@@ -17,9 +17,9 @@
         <nav role="navigation">
           <ul class="nav nav-pills pull-right">
             <%= if @conn.assigns[:current_user] do %>
-              <li><%= link "Sign out", to: signin_path(@conn, :delete, 1), method: :delete %></li>
+              <li><%= link "Sign out", class: "btn btn-primary", to: signin_path(@conn, :delete, 1), method: :delete %></li>
             <%= else %>
-              <li><%= link "Sign in", to: signin_path(@conn, :new) %></li>
+              <li><%= link "Sign in", class: "btn btn-primary", to: signin_path(@conn, :new) %></li>
             <%= end %>
           </ul>
         </nav>
