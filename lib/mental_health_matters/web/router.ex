@@ -41,6 +41,7 @@ defmodule MentalHealthMatters.Web.Router do
 
     resources "/signin", SigninController, only: [:new, :create, :delete]
     resources "/registration", RegistrationController, only: [:new, :create]
+    resources "/assessment/results", AssessmentResultsController, only: [:index]
     resources "/assessment", AssessmentController, only: [:index]
     get "/", PageController, :index
   end

@@ -1,0 +1,10 @@
+<div class="jumbotron">
+<h2>Great job!</h2>
+
+<p class="lead">Based on your assessment, we'd like to schedule you to talk to one of our Peer Coaches</p>
+<%= if @conn.assigns[:current_user] do %>
+  <%= link "Schedule an Appointment", class: "btn btn-success", role: "button", to: "/schedule_appointment/new" %>
+<%= else %>
+  <%= link "Sign up to Schedule an Appointment", class: "btn btn-success", role: "button", to: "/registration/new" %>
+<%= end %>
+</div>
