@@ -1,4 +1,4 @@
-<h2>SIgn in</h2>
+<h2>Sign in</h2>
 
 <%= render "form.html", changeset: @changeset,
                         action: signin_path(@conn, :create) %>
